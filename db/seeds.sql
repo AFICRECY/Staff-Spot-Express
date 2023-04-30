@@ -4,7 +4,7 @@ VALUES (1, "Sales"),
     (3, "Engineering"),
     (4, "Finance");
 
-
+SELECT * FROM departments;
 
 
 
@@ -19,6 +19,12 @@ VALUES (1, "Sales Lead", "Sales", "100000"),
     (8, "Accountant", "Finance", "90000");
 
 
+SELECT *
+FROM roles,
+INNER JOIN title ON department.roles = title.id;
+
+
+
 
 INSERT INTO  employees (employee_id, firstName, lastName, title, department, salary, manager)
 VALUES (1, "Naomi", "Johnson", "Sales Lead", "Sales", "100000", Null),
@@ -29,3 +35,9 @@ VALUES (1, "Naomi", "Johnson", "Sales Lead", "Sales", "100000", Null),
     (6, "Rashon", "Davis", "Associate Software Engineer", "Engineering", "100000", "Tamika Johnson"),
     (7, "Marques", "Houston", "Finance Director", "Finance", "140000", Null),
     (8, "Salim" "Gupta" "Accountant", "Finance", "90000", "Marques Houston");
+
+
+    SELECT
+    firstName AS first_name, lastName.last_name, title.last_name AS last_name, title.Position, department.Position AS Position, department.department, salary.department AS department, salary.salary, salary.manager AS manager
+FROM allDepartments
+JOIN allRoles ON allDepartments. = allRoles.id;
