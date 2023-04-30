@@ -22,11 +22,11 @@ CREATE TABLE roles (
 CREATE TABLE employees (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
-    last_name VARCHAR(30)
-    title VARCHAR(30)
-    department VARCHAR(50)
-    salary VARCHAR(30)
-    manager VARCHAR(30)
+    last_name VARCHAR(30),
+    title VARCHAR(30),
+    department VARCHAR(50),
+    salary VARCHAR(30),
+    manager VARCHAR(30),
     role_id INT,
     FOREIGN KEY (role_id)
     REFERENCES roles(id)
