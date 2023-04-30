@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 // Import and require mysql2
 const mysql = require('mysql2');
-const { throwError } = require('rxjs');
+// const { throwError } = require('rxjs');
 
 const db = mysql.createConnection(
   {
@@ -29,11 +29,11 @@ const homeQuestions = [
   ]
 
   const promptStart = function () {
-    inquirer.prompt(questions).then((response) => {
+    inquirer.prompt(homeQuestions).then((response) => {
       if(response.homeOptions === "View All Employees"){
         allEmployees()
       } else if (response.homeOptions === "Add Employee"){
-        addemployee()
+        addEmployee()
       }else if (response.homeOptions === "UpdateEmployee Role"){
         updateEmployees()
       }else if (response.homeOptions === "View All Roles"){
@@ -49,31 +49,62 @@ const homeQuestions = [
   }
 
 
-
-  
 //   WHEN I choose to view all departments
 // THEN I am presented with a formatted table showing department names and department ids
-allDepartments()
+function allDepartments() {
+  db.query("SELECT * FROM department", (error, response)=> {
+    if (error) throw error
+    console.table(response)
+    promptStart()
+  })
+}
+
+function allEmployees() {
+  db.query("SELECT * FROM employee", (error, response)=> {
+    if (error) throw error
+    console.table(response)
+    promptStart()
+})
+}
+
+function allRoles() {
+  db.query("SELECT * FROM role", (error, response)=> {
+    if (error) throw error
+    console.table(response)
+    promptStart()
+})
+}
+
+
+
+
+
+
+
+
 // WHEN I choose to view all roles
 // THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
-allRoles()
+// allRoles()
 // WHEN I choose to view all employees
 // THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-allEmployees()
-// WHEN I choose to add a department
-// THEN I am prompted to enter the name of the department and that department is added to the database
+// allEmployees()
+// // WHEN I choose to add a department
+// // THEN I am prompted to enter the name of the department and that department is added to the database
+// addDepartments()
+// // WHEN I choose to add a role
+// // THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
+// addRole()
+// // WHEN I choose to add an employee
+// // THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
+// addEmployee()
+// // WHEN I choose to update an employee role
+// // THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
+// updateEmployee()
 
-// WHEN I choose to add a role
-// THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
-// WHEN I choose to add an employee
-// THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
-// WHEN I choose to update an employee role
-// THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
 
 
 
 
-// SELECT * FROM departments;
 
 
 // SELECT *
@@ -117,11 +148,3 @@ allEmployees()
 //   });
 // });
 
-// Default response for any other request (Not Found)
-app.use((req, res) => {
-  res.status(404).end();
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
