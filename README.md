@@ -171,3 +171,12 @@ You are required to submit BOTH of the following for review:
 
 - - -
 © 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+
+https://www.quora.com/What-are-the-main-departments-in-a-company
+https://lists.wordreference.com/show/company-departments.381/
+https://www.w3schools.com/sql/sql_select.asp
+https://www.w3schools.com/sql/sql_count_avg_sum.asp
+https://www.npmjs.com/package/console.table?activeTab=readme
+https://www.npmjs.com/package/figlet
+https://www.npmjs.com/package/mysql2?activeTab=readme
