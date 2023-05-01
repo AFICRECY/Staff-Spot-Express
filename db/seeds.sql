@@ -1,6 +1,6 @@
 INSERT INTO department (id, department_name) VALUES 
 (1, 'Sales'),
-(2, 'HUman Resources'),
+(2, 'Human Resources'),
 (3, 'Engineering'),
 (4, 'Finance');
 
@@ -11,7 +11,7 @@ INSERT INTO role (id, title, salary, department_id) VALUES
 (3, 'Marketing Manager', 100000, 2),
 (4, 'Marketing Specialist', 60000, 2),
 (5, 'Software Engineer', 150000, 3),
-(6, 'Associate Engineer', 95000, 4),
+(6, 'Associate Engineer', 95000, 3),
 (7, 'Product Designer', 70000, 4);
 
 -- populate employee table

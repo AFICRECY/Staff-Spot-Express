@@ -13,24 +13,7 @@ const addDeptQuestions = [
         ]
 
 
-const addRoleQuestions = [
-    {
-        type: 'input',
-        message: 'What is the name of the role you want to add?',
-        name: 'roleTitle',
-        },
-        {
-        type: 'input',
-        message: 'What is the salary for that role?',
-        name: 'roleSalary',
-        },
-        {
-        type: 'list',
-        message: 'Which department does this role belong to?',
-        name: 'roleDept',
-        choices: ['Xxx', 'XXX','XXX','XXX'],
-        }
-]
+
 
 
 const addEmployeeQuestions = [

@@ -1,8 +1,8 @@
-SELECT movies.movie_name AS movie, reviews.review
-FROM movies
-LEFT JOIN reviews
-ON reviews.movie_id = movies.id
-ORDER BY movies.movie_name;
+-- SELECT movies.movie_name AS movie, reviews.review
+-- FROM movies
+-- LEFT JOIN reviews
+-- ON reviews.movie_id = movies.id
+-- ORDER BY movies.movie_name;
 
 -- Todo:
 -- 1. I want to create a "View all Departments" table that includes data on id and department names.

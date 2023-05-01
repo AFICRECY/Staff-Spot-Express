@@ -19,6 +19,22 @@ db.connect((error) => {
   promptStart()
 }) 
 
+var figlet = require("figlet");
+
+figlet("Staff Spot Express", function (err, data) {
+  if (err) {
+    console.log("Something went wrong...");
+    console.dir(err);
+    return;
+  }
+  console.log(data);
+});
+
+
+
+
+
+
 const homeQuestions = [
   {
       type: 'list',
@@ -75,6 +91,53 @@ function allRoles() {
 })
 }
 
+
+function addRole() {
+    inquirer.prompt([
+      {
+      type: 'input',
+      message: 'What is the name of the role you want to add?',
+      name: 'roleTitle',
+      },
+      {
+      type: 'input',
+      message: 'What is the salary for that role?',
+      name: 'roleSalary',
+      },
+      {
+        type: 'list',
+        message: 'Which department does this role belong to?',
+        name: 'roleDept',
+        choices: ['Sales', 'Human Resources','Engineering','Finance'],
+      }
+    ])
+    .then((response,choices) => {
+      response.unshift({id:""});
+      console.log(response)
+      var choices = ['Sales', 'Human Resources','Engineering','Finance']
+      console.log(choices.indexOf(response.roleDept));
+      const insertRole = 'INSERT INTO role SET ?';
+      db.query(insertRole,response,(err,res)=>{
+        if(err){
+          console.log(err)
+        }
+      })
+      db.query("SELECT * FROM role", (error, response)=> {
+        if (error) throw error
+        console.table(response)
+        promptStart()
+      })
+      
+    })
+}
+
+
+
+
+
+// addDepartments()
+// addEmployee()
+// updateEmployee()
 
 
 
