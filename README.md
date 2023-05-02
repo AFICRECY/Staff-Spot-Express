@@ -17,7 +17,7 @@
 
 ## Description:
 
-Watch Functionality Video:
+Watch Functionality Video: [https://drive.google.com/file/d/1jjubrtASBkf53vuNRsMXTtPOpCbEP6lZ/view]
 
 A healthy company culture can be fostered through the use of effective employee database software. The use of effective employee database software can lead to improved employee engagement and decreased workplace frustration. This is due to the instant, secure, and controlled access employees have to their own records. Proper maintenance of these records also contributes to greater data security, as the software builds a strong system that prevents the misuse of information. Moreover, employee database software enables companies to establish a well-defined organizational structure through the inclusion of custom entities. Businesses can tailor their workforce according to their specific needs and remain current with compliance updates.
 
@@ -220,6 +220,8 @@ By utilizing employee database software, companies can improve their clarity and
 * Schema Objects: https://docs.oracle.com/cd/B19306_01/server.102/b14220/schema.htm
 * Loading Tables: https://dev.mysql.com/doc/refman/8.0/en/loading-tables.html
 * MySQL Join: https://dev.mysql.com/doc/refman/8.0/en/join.html
+* Markdown White Space: https://www.dotcms.com/docs/latest/markdown-syntax#:~:text=To%20add%20an%20extra%20line,spaces%20(e.g.%20).
+
 
 
 <p>&nbsp;</p>

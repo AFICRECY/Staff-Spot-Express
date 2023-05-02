@@ -3,7 +3,7 @@ const inquirer = require("inquirer");
 const mysql = require("mysql2");
 // const { throwError } = require('rxjs');
 
-
+// Creating Connection to MySQL
 // This code creates a connection to a MySQL database named "employee_db". It uses the "mysql" package to create a connection object called "db" with the following properties:
 const db = mysql.createConnection(
   {
@@ -23,7 +23,7 @@ db.connect((error) => {
 });
 
 
-
+// Figlet
 // Calling the figlet object as a function is shorthand for calling the text function. This method allows you to create ASCII Art from text
 var figlet = require("figlet");
 
@@ -37,7 +37,7 @@ figlet("Staff Spot Express", function (err, data) {
 });
 
 
-
+// Initial Prompt/Landing Prompts
 // These are the prompts that the user will initally see in a drop down list style. 
 // The below function is run when the user chooses an option and that directs the user to the other functions which do the work.
 const homeQuestions = [
@@ -206,23 +206,6 @@ function addDepartments() {
 
 
 
-function returnArrayOfAllRoles() {
-  db.query("SELECT title FROM role", (error, response) => {
-    if (error) throw error;
-    //console.log('response is', response);
-    // map over the response array that we get back from querying
-    // and return the value of the title property
-    const arrayOfRoleChoices = response.map((role) => {
-      return role.title;
-    });
-    // return your array of roles
-    console.log("role array is", arrayOfRoleChoices);
-    return arrayOfRoleChoices;
-  });
-}
-
-
-
 // WHEN I choose to ADD AN EMPLOYEE
 // THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
 function addEmployee() {
@@ -351,7 +334,3 @@ function updateEmployees(){
       })
     })
 }
-
-
-
-
