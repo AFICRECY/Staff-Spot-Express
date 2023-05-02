@@ -4,13 +4,6 @@ const inquirer = require('inquirer');
 
 
 
-const addDeptQuestions = [
-        {
-        type: 'input',
-        message: 'What is the name of the Department you want to add?',
-        name: 'depTitle',
-        }
-        ]
 
 
 

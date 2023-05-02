@@ -173,6 +173,10 @@ You are required to submit BOTH of the following for review:
 © 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
 
 
+Technologies used
+https://www.mysql.com/
+
+References:
 https://www.quora.com/What-are-the-main-departments-in-a-company
 https://lists.wordreference.com/show/company-departments.381/
 https://www.w3schools.com/sql/sql_select.asp
@@ -180,3 +184,13 @@ https://www.w3schools.com/sql/sql_count_avg_sum.asp
 https://www.npmjs.com/package/console.table?activeTab=readme
 https://www.npmjs.com/package/figlet
 https://www.npmjs.com/package/mysql2?activeTab=readme
+https://dev.mysql.com/doc/mysql-shell/8.0/en/mysql-shell-getting-started.html
+https://dev.mysql.com/doc/refman/8.0/en/creating-database.html
+https://dev.mysql.com/doc/refman/8.0/en/creating-tables.html
+https://dev.mysql.com/doc/refman/8.0/en/select.html
+https://dev.mysql.com/doc/refman/8.0/en/insert.html
+https://dev.mysql.com/doc/refman/8.0/en/update.html
+https://dev.mysql.com/doc/refman/8.0/en/delete.html
+https://docs.oracle.com/cd/B19306_01/server.102/b14220/schema.htm
+https://dev.mysql.com/doc/refman/8.0/en/loading-tables.html
+https://dev.mysql.com/doc/refman/8.0/en/join.html
