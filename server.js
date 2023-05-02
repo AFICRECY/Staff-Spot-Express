@@ -3,6 +3,8 @@ const inquirer = require("inquirer");
 const mysql = require("mysql2");
 // const { throwError } = require('rxjs');
 
+
+// This code creates a connection to a MySQL database named "employee_db". It uses the "mysql" package to create a connection object called "db" with the following properties:
 const db = mysql.createConnection(
   {
     host: "localhost",
@@ -20,6 +22,9 @@ db.connect((error) => {
   promptStart();
 });
 
+
+
+// Calling the figlet object as a function is shorthand for calling the text function. This method allows you to create ASCII Art from text
 var figlet = require("figlet");
 
 figlet("Staff Spot Express", function (err, data) {
@@ -31,6 +36,10 @@ figlet("Staff Spot Express", function (err, data) {
   console.log(data);
 });
 
+
+
+// These are the prompts that the user will initally see in a drop down list style. 
+// The below function is run when the user chooses an option and that directs the user to the other functions which do the work.
 const homeQuestions = [
   {
     type: "list",
@@ -68,7 +77,7 @@ const promptStart = function () {
   });
 };
 
-//   WHEN I choose to view all departments
+// WHEN I choose to VIEW ALL DEPARTMENTS
 // THEN I am presented with a formatted table showing department names and department ids
 function allDepartments() {
   db.query("SELECT * FROM department", (error, response) => {
@@ -78,6 +87,9 @@ function allDepartments() {
   });
 }
 
+
+// WHEN I choose to VIEW ALL EMPLOYEES
+// THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
 function allEmployees() {
   db.query("SELECT * FROM employee", (error, response) => {
     if (error) throw error;
@@ -86,6 +98,9 @@ function allEmployees() {
   });
 }
 
+
+// WHEN I choose to VIEW ALL ROLES
+// THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
 function allRoles() {
   db.query("SELECT * FROM role", (error, response) => {
     if (error) throw error;
@@ -94,6 +109,9 @@ function allRoles() {
   });
 }
 
+
+// WHEN I choose to ADD A ROLE
+// THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
 function addRole() {
   inquirer
     .prompt([
@@ -126,7 +144,6 @@ function addRole() {
 
         const newId = res[0].id + 1;
         response.id = newId.toString();
-        // Here you can put the code that inserts the new record with the new ID.
         var choices = ["Sales", "Human Resources", "Engineering", "Finance"];
         const insertRole = `INSERT INTO role (id, title, salary, department_id) VALUES (${
           response.id
@@ -147,6 +164,10 @@ function addRole() {
     });
 }
 
+
+
+// WHEN I choose to ADD A DEPARTMENT
+// THEN I am prompted to enter the name of the department and that department is added to the database
 function addDepartments() {
   inquirer
     .prompt([
@@ -183,6 +204,8 @@ function addDepartments() {
     });
 }
 
+
+
 function returnArrayOfAllRoles() {
   db.query("SELECT title FROM role", (error, response) => {
     if (error) throw error;
@@ -198,6 +221,10 @@ function returnArrayOfAllRoles() {
   });
 }
 
+
+
+// WHEN I choose to ADD AN EMPLOYEE
+// THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
 function addEmployee() {
   inquirer
     .prompt([
@@ -215,19 +242,7 @@ function addEmployee() {
         type: "list",
         message: "What is this employee's role?",
         name: "staffRole",
-        choices: ['Manager', 'Sales Representative', 'Marketing Manager', 'Marketing Specialist', 'Software Engineer', 'Associate Engineer', 'Associate Engineer', 'Product Designer']
-        // choices: async () => {
-        //   // the purpose of this function is to dynamically retrieve all of the existing roles
-        //   // in the role datatable by executing the sql query below. Then you map over the response
-        //   // that you get to simply generate an array of string values (where values are the roles)
-        //     db.query("SELECT title FROM role", (error, response) => {
-        //     if (error) throw error;
-        //     const arrayOfRoleChoices = response.map((role) => {
-        //       return role.title;
-        //     });
-        //     return arrayOfRoleChoices;
-        //   });
-        // }
+        choices: ['Manager', 'Sales Representative', 'Marketing Manager', 'Marketing Specialist', 'Software Engineer', 'Associate Engineer', 'Associate Engineer', 'Product Designer'],
       },
       {
         type: "list",
@@ -269,7 +284,6 @@ function addEmployee() {
           console.log(res);
         });
 
-
         db.query("SELECT * FROM employee", (error, response) => {
           if (error) throw error;
           console.table(response);
@@ -280,6 +294,9 @@ function addEmployee() {
 }
 
 
+
+// WHEN I choose to UPDATE AN EMPLOYEE ROLE
+// THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 function updateEmployees(){
   
   inquirer
@@ -332,76 +349,9 @@ function updateEmployees(){
           promptStart();
         });
       })
-      
-      // var newId;
-      // db.query(id_query, (err, res) => {
-      //   if (err) {
-      //     console.error(err);
-      //     return;
-      //   }
-      // })
     })
-  
 }
 
-// addDepartments()
-// addEmployee()
-// updateEmployee()
 
-// WHEN I choose to view all roles
-// THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
-// allRoles()
-// WHEN I choose to view all employees
-// THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-// allEmployees()
-// // WHEN I choose to add a department
-// // THEN I am prompted to enter the name of the department and that department is added to the database
-// addDepartments()
-// // WHEN I choose to add a role
-// // THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
-// addRole()
-// // WHEN I choose to add an employee
-// // THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
-// addEmployee()
-// // WHEN I choose to update an employee role
-// // THEN I am prompted to select an employee to update and their new role and this information is updated in the database
-// updateEmployee()
 
-// SELECT *
-// FROM roles,
-// INNER JOIN title ON department.roles = title.id;
 
-// SELECT
-//     firstName AS first_name, lastName.last_name, title.last_name AS last_name, title.Position, department.Position AS Position, department.department, salary.department AS department, salary.salary, salary.manager AS manager
-// FROM allDepartments
-// JOIN allRoles ON allDepartments. = allRoles.id;
-
-// Update review name
-// PUT
-// http://localhost:3001/api/review/1
-// {
-// "movie": "Lion King",
-// "review": "Amazing!!!!"
-// }
-// app.put('/api/review/:id', (req, res) => {
-
-//   const sql = `UPDATE reviews SET review = ? WHERE id = ?`;
-//   const params = [req.body.review, req.params.id];
-
-//   db.query(sql, params, (err, result) => {
-//     if (err) {
-
-//       res.status(400).json({ error: err.message });
-//     } else if (!result.affectedRows) {
-//       res.json({
-//         message: 'Movie not found'
-//       });
-//     } else {
-//       res.json({
-//         message: 'success',
-//         data: req.body,
-//         changes: result.affectedRows
-//       });
-//     }
-//   });
-// });
