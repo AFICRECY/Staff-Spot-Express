@@ -54,7 +54,7 @@ const promptStart = function () {
       allEmployees();
     } else if (response.homeOptions === "Add Employee") {
       addEmployee();
-    } else if (response.homeOptions === "UpdateEmployee Role") {
+    } else if (response.homeOptions === "Update Employee Role") {
       updateEmployees();
     } else if (response.homeOptions === "View All Roles") {
       allRoles();
@@ -258,10 +258,92 @@ function addEmployee() {
           "Tamika Johnson",
           "Rashon Davis",
         ];
-        const insertDept = `INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (${response.id}, "${response.firstName}", "${response.lastName}", "${response.staffManager}", "${choices.indexOf(response.staffRole)}", "${choices.indexOf(response.staffManager)}"`;})
+        var employeeRole= ['Manager', 'Sales Representative', 'Marketing Manager', 'Marketing Specialist', 'Software Engineer', 'Associate Engineer', 'Associate Engineer', 'Product Designer']
+        const insertEmp = `INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (${response.id}, "${response.firstName}", "${response.lastName}", "${employeeRole.indexOf(response.staffRole)}", "${choices.indexOf(response.staffManager)}")`;
+
+        db.query(insertEmp, (err, res) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          console.log(res);
+        });
+
+
+        db.query("SELECT * FROM employee", (error, response) => {
+          if (error) throw error;
+          console.table(response);
+          promptStart();
+        });
       });
-    };
+    });
+}
+
+
+function updateEmployees(){
   
+  inquirer
+    .prompt([
+    {
+        message: 'Which employee role do you want to update?',
+        name: 'updateRole',
+        }
+    ])
+    db.query("SELECT * FROM employee", (error, response) => {
+      if (error) throw error;
+      console.table(response);
+      
+    });
+    console.log("\n")
+    inquirer.prompt([
+      {
+        message: 'Type employee id.',
+        name:'staffId'
+      }
+    ])
+    .then((response) => {
+      
+      var staffId=response.staffId;
+      const updateEmployee = `SELECT * FROM employee WHERE id = ${response.staffId}`;
+
+      db.query(updateEmployee,(error, response) => {
+        if (error) throw error;
+        console.table(response);
+      });
+      console.log(response)
+      inquirer.prompt([
+        {
+          type:"list",
+          message:'Which role do you want to assign to the selected employee?',
+          name:'staffRole',
+          choices: ['Manager', 'Sales Representative', 'Marketing Manager', 'Marketing Specialist', 'Software Engineer', 'Associate Engineer', 'Associate Engineer', 'Product Designer'],
+        }
+      ])
+      .then((response)=>{
+        var choices= ['Manager', 'Sales Representative', 'Marketing Manager', 'Marketing Specialist', 'Software Engineer', 'Associate Engineer', 'Associate Engineer', 'Product Designer'];
+        const updateStaffRole=`UPDATE employee SET role_id = '${choices.indexOf(response.staffRole)}' WHERE id = ${staffId}`;
+        db.query(updateStaffRole,(error, response) => {
+          if (error) throw error;
+          console.table(response);
+        });
+        db.query("SELECT * FROM employee", (error, response) => {
+          if (error) throw error;
+          console.table(response);
+          promptStart();
+        });
+      })
+      
+      // var newId;
+      // db.query(id_query, (err, res) => {
+      //   if (err) {
+      //     console.error(err);
+      //     return;
+      //   }
+      // })
+    })
+  
+}
+
 // addDepartments()
 // addEmployee()
 // updateEmployee()
